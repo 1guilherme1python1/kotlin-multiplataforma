@@ -9,6 +9,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 kotlin {
@@ -55,27 +57,40 @@ kotlin {
             isStatic = true
         }
     }
-    
+    val ktorVersion = "2.3.7"
+
     sourceSets {
         val desktopMain by getting
         
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.ktor.ktor.client.android)
         }
         commonMain.dependencies {
+            implementation(libs.kotlinx.datetime)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
             implementation(compose.ui)
             implementation(compose.components.resources)
+            implementation(libs.ktor.client.core)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.jetbrains.kotlinx.serialization.json)
+
+
+            implementation(libs.image.loader)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.ktor.client.darwin)
         }
     }
 }
