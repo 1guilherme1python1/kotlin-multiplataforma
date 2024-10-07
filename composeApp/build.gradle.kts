@@ -57,7 +57,6 @@ kotlin {
             isStatic = true
         }
     }
-    val ktorVersion = "2.3.7"
 
     sourceSets {
         val desktopMain by getting
@@ -65,7 +64,8 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            implementation(libs.ktor.ktor.client.android)
+            implementation(libs.ktor.client.okhttp)
+            implementation(libs.kotlinx.coroutines.android)
         }
         commonMain.dependencies {
             implementation(libs.kotlinx.datetime)
@@ -74,13 +74,13 @@ kotlin {
             implementation(compose.material)
             implementation(compose.ui)
             implementation(compose.components.resources)
-            implementation(libs.ktor.client.core)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.jetbrains.kotlinx.serialization.json)
-
+            implementation(libs.ktor.client.core)
+            implementation(libs.kotlinx.coroutines.core)
 
             implementation(libs.image.loader)
         }
@@ -90,7 +90,7 @@ kotlin {
         }
 
         iosMain.dependencies {
-            implementation(libs.ktor.ktor.client.darwin)
+            implementation(libs.ktor.client.darwin)
         }
     }
 }
@@ -130,6 +130,10 @@ android {
     dependencies {
         debugImplementation(compose.uiTooling)
     }
+}
+dependencies {
+//    implementation(libs.androidx.foundation.layout.jvmstubs)
+    implementation(libs.androidx.material3.android)
 }
 
 compose.desktop {

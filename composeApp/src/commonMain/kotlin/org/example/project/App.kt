@@ -1,39 +1,26 @@
 package org.example.project
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
-import androidx.compose.material.Divider
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import org.jetbrains.compose.resources.painterResource
+import org.example.project.ui.PlatformNavigation
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-import km_learn_multi.composeapp.generated.resources.Res
-import km_learn_multi.composeapp.generated.resources.compose_multiplatform
 
 @Composable
-@Preview
 fun App() {
     MaterialTheme {
-        val greeting = remember { Greeting().greet() }
-
-        Column(
-            modifier = Modifier.padding(all = 20.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            greeting.forEach {
-                Text(it)
-                Divider()
-            }
+        Scaffold(modifier = Modifier.fillMaxSize()){
+            PlatformNavigation()
         }
     }
 }
+//
+//@Composable
+//expect fun NavBar()
+//
+//@Composable
+//expect fun DrawerNavigation()
